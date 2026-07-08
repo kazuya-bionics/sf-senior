@@ -1,0 +1,83 @@
+---
+import { Icon } from "astro-icon/components";
+
+
+---
+
+<section>
+    <div class="w-full h-20 bg-primary"/>
+    <div class="flex gap-4 w-full p-8">
+        <div class="w-1/2">
+            <img src="/aboutImage.png" alt="About Us" class="w-full h-full object-cover rounded-3xl"/>
+        </div>
+        <div class="flex flex-col gap-4 w-1/2 px-8">
+            <h3 class="text-4xl font-bold">¿Quienes Somos?</h3>
+            <p class="mt-4">En Soluciones financieras senior ayudamos a pensionados y jubilados a encontrar opciones de financiamiento con mejores condiciones. </p>
+            <p>Comparamos diferentes instituciones financieras para que obtengas un préstamo justo, con un proceso sencillo, transparente y acompañado por expertos en cada etapa.</p>
+            <ul class="grid grid-cols-2 gap-6 mt-6">
+                <li class="bg-white p-2 rounded-xl">
+                    <div class="flex items-center gap-2">
+                        <div>
+                            <Icon name="mdi:account-multiple" class="h-6 w-6 shrink-0 text-primary" />
+                        </div>
+                        <p class="text-2xl font-bold text-primary">10,000+</p>
+                    </div>
+                    <p class="text-sm text-gray-500">
+                        Clientes Atendidos
+                    </p>
+                </li>
+                <li class="bg-white p-2 rounded-xl">
+                    <div class="flex items-center gap-2">
+                        <div>
+                            <Icon name="mdi:bank" class="h-6 w-6 shrink-0 text-primary" />
+                        </div>
+                        <p class="text-2xl font-bold text-primary">10+</p>
+                    </div>
+                    <p class="text-sm text-gray-500">
+                        Financieras Aliadas
+                    </p>
+                </li>
+                <li class="bg-white p-2 rounded-xl">
+                    <div class="flex items-center gap-2">
+                        <div>
+                            <Icon name="mdi:cash-multiple" class="h-6 w-6 shrink-0 text-primary" />
+                        </div>
+                        <p class="text-2xl font-bold text-primary">1,000+</p>
+                    </div>
+                    <p class="text-sm text-gray-500">
+                        Prestamos Otorgados
+                    </p>
+                </li>
+                <li class="bg-white p-2 rounded-xl">
+                    <div class="flex items-center gap-2">
+                        <div>
+                            <Icon name="mdi:emoticon-happy-outline" class="h-6 w-6 shrink-0 text-primary" />
+                        </div>
+                        <p class="text-2xl font-bold text-primary">1,000+</p>
+                    </div>
+                    <p class="text-sm text-gray-500">
+                        Clientes Satisfechos
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- explore more -->
+    <div class="w-full h-30 flex items-center justify-center gap-4 cursor-pointer">
+        <div class="flex flex-col items-center gap-2 text-primary">
+            <p class="text-sm">Explorar Servicios</p>
+            <Icon name="lucide:arrow-down" class="w-4 h-4 text-primary" />
+        </div>
+    </div>
+    
+    <div class="w-full h-16 flex justify-center items-center bg-pink-200/30 mb-20">
+        <div class="flex items-center gap-2 rounded-full bg-white p-1">
+            <Icon name="lucide:phone" class="w-5 h-5 text-primary" />
+        </div>
+        <div class="flex flex-col px-4 text-sm">
+            <p>Nuestro objetivo es que pagues lo justo por tu prestamo,</p>
+            <p class="text-primary">con un proceso sencillo, seguro y pensado para tu tranqulidad financiera</p>
+        </div>
+    </div>
+</section>

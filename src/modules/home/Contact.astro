@@ -1,0 +1,162 @@
+---
+// Contact.astro
+// Requiere Tailwind CSS con un color "primary" definido en tailwind.config
+// (ej. primary: { DEFAULT: "#C81E5C", ... }) y astro-icon con el set "lucide":
+//   npm install astro-icon @iconify-json/lucide
+
+import { Icon } from "astro-icon/components";
+---
+
+<section class=" w-full mt-16 px-6 py-12 bg-white">
+  <div class="grid gap-10 lg:grid-cols-2">
+    <!-- Columna izquierda -->
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="h-0.5 w-6 bg-primary"></span>
+        <span class="text-xs font-semibold tracking-wide text-primary">CONTACTO</span>
+      </div>
+
+      <h2 class="mt-4 text-3xl font-bold text-neutral-900 md:text-4xl">
+        Estamos listos
+        <span class="block text-primary">para ayudarte</span>
+      </h2>
+
+      <p class="mt-4 text-sm leading-relaxed text-neutral-500">
+        ¿Tienes dudas o deseas conocer las mejores opciones de préstamo para ti?
+        Nuestro equipo está listo para brindarte asesoría personalizada y
+        acompañarte durante todo el proceso.
+      </p>
+
+      <ul class="mt-6 space-y-4">
+        <li class="flex items-center gap-4 border-b border-neutral-100 pb-4">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10">
+            <Icon name="lucide:phone" class="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-neutral-900">Teléfono</p>
+            <p class="text-sm font-medium text-primary">(55) 1234 5678</p>
+          </div>
+        </li>
+
+        <li class="flex items-center gap-4 border-b border-neutral-100 pb-4">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10">
+            <Icon name="lucide:message-circle" class="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-neutral-900">WhatsApp</p>
+            <p class="text-sm font-medium text-primary">(55) 9876 5432</p>
+          </div>
+        </li>
+
+        <li class="flex items-center gap-4 border-b border-neutral-100 pb-4">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10">
+            <Icon name="lucide:mail" class="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-neutral-900">Correo electrónico</p>
+            <p class="text-sm font-medium text-primary">contacto@pensiora.com</p>
+          </div>
+        </li>
+
+        <li class="flex items-center gap-4">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10">
+            <Icon name="lucide:map-pin" class="h-5 w-5 text-primary" />
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-neutral-900">Dirección</p>
+            <p class="text-sm text-neutral-500">Ciudad de México, México.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="relative mt-8 h-56 overflow-hidden rounded-2xl md:h-64">
+        <img
+          src="/contactImage.png"
+          alt="Pareja de adultos mayores viendo el atardecer"
+          class="h-full w-full object-cover"
+        />
+        <div
+          class="absolute bottom-0 left-0 h-24 w-32 bg-[radial-gradient(var(--color-white)_1.5px,transparent_1.5px)]/70 bg-size-[10px_10px] opacity-70"
+        >
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna derecha: formulario -->
+    <div>
+      <div class="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-neutral-100">
+        <div class="flex items-center gap-2">
+          <Icon name="lucide:send" class="h-5 w-5 text-primary" />
+          <h3 class="text-lg font-bold text-neutral-900">Envíanos un mensaje</h3>
+        </div>
+
+        <form class="mt-6 space-y-5">
+          <div>
+            <label for="nombre" class="text-sm font-medium text-neutral-900">Nombre completo</label>
+            <input
+              id="nombre"
+              name="nombre"
+              type="text"
+              placeholder="Ingresa tu nombre"
+              class="mt-2 w-full rounded-lg border border-neutral-200 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </div>
+
+          <div>
+            <label for="correo" class="text-sm font-medium text-neutral-900">Correo electrónico</label>
+            <input
+              id="correo"
+              name="correo"
+              type="email"
+              placeholder="correo@ejemplo.com"
+              class="mt-2 w-full rounded-lg border border-neutral-200 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </div>
+
+          <div>
+            <label for="telefono" class="text-sm font-medium text-neutral-900">
+              Teléfono <span class="font-normal text-neutral-400">(Opcional)</span>
+            </label>
+            <input
+              id="telefono"
+              name="telefono"
+              type="tel"
+              placeholder="Ingresa tu número"
+              class="mt-2 w-full rounded-lg border border-neutral-200 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </div>
+
+          <div>
+            <label for="mensaje" class="text-sm font-medium text-neutral-900">¿Cómo podemos ayudarte?</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              rows="4"
+              placeholder="Escribe tu mensaje aquí..."
+              class="mt-2 w-full resize-none rounded-lg border border-neutral-200 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary/90"
+          >
+            Enviar mensaje
+            <Icon name="lucide:arrow-right" class="h-4 w-4" />
+          </button>
+        </form>
+      </div>
+
+      <div class="mt-6 flex items-start gap-4 rounded-2xl bg-primary/10 p-6">
+        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/15">
+          <Icon name="lucide:heart-handshake" class="h-5 w-5 text-primary" />
+        </div>
+        <p class="text-sm leading-relaxed text-neutral-600">
+          En Pensiora estamos comprometidos con brindarte una
+          <span class="font-semibold text-primary">atención cercana, transparente y personalizada.</span>
+          Contáctanos hoy y encuentra la mejor opción para tus necesidades financieras.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
