@@ -1,17 +1,80 @@
 ---
-// ServicesCarousel.astro
+// ServiciosPrestamos.astro
+// Servicios y Requisitos para préstamos de Pensionados y Jubilados
 // Requiere Tailwind CSS y astro-icon con el set "lucide" instalado:
 //   npm install astro-icon @iconify-json/lucide
 
 import { Icon } from "astro-icon/components";
+
+const servicios = [
+  {
+    icon: "lucide:hand-coins",
+    title: "Préstamos para Pensionados",
+    text: "Accede a opciones de financiamiento diseñadas especialmente para pensionados del IMSS e ISSSTE, con condiciones competitivas y un proceso sencillo.",
+  },
+  {
+    icon: "lucide:graduation-cap",
+    title: "Préstamos para Jubilados",
+    text: "Financiamiento pensado para jubilados de SEP, PEMEX y otras dependencias de gobierno, con tasas preferenciales y descuento directo vía nómina.",
+  },
+  {
+    icon: "lucide:refresh-cw",
+    title: "Refinanciamiento de Préstamos",
+    text: "Si ya cuentas con un préstamo, te ayudamos a encontrar alternativas que te permitan mejorar tus condiciones y reducir el monto de tus pagos mensuales.",
+  },
+  {
+    icon: "lucide:landmark",
+    title: "Comparación entre Financieras",
+    text: "Analizamos distintas instituciones financieras para encontrar la opción que mejor se adapte a tus necesidades y capacidad de pago.",
+  },
+  {
+    icon: "lucide:headset",
+    title: "Asesoría Personalizada",
+    text: "Nuestros especialistas te acompañan desde la solicitud hasta la aprobación de tu préstamo, resolviendo cualquier duda durante el proceso.",
+  },
+];
+
+const requisitos = [
+  {
+    icon: "lucide:id-card",
+    title: "INE vigente",
+    text: "Identificación oficial vigente por ambos lados.",
+  },
+  {
+    icon: "lucide:home",
+    title: "Comprobante de domicilio",
+    text: "No mayor a 3 meses de antigüedad.",
+  },
+  {
+    icon: "lucide:file-text",
+    title: "Estado de cuenta",
+    text: "Bancario, donde recibas tu pensión o nómina.",
+  },
+  {
+    icon: "lucide:banknote",
+    title: "2 últimos recibos",
+    text: "De nómina o pensión más recientes.",
+  },
+];
+
+const dependencias = [
+  "IMSS",
+  "ISSSTE",
+  "SEP",
+  "PEMEX",
+  "Gobierno CDMX",
+  "Gobierno de México",
+  "Gobierno de Puebla",
+  "Gobierno de Michoacán",
+];
 ---
 
-<section class="mx-auto max-w-6xl rounded-3xl bg-neutral-50 px-6 py-12 md:px-12">
+<section class="mx-auto max-w-6xl rounded-3xl bg-neutral-50 px-4 py-10 sm:px-6 sm:py-12 lg:px-12">
   <!-- Encabezado -->
   <div class="mx-auto max-w-2xl text-center">
-    <h2 class="text-3xl font-bold text-neutral-900 md:text-4xl">
-      Soluciones financieras
-      <span class="block text-primary">pensadas para ti</span>
+    <h2 class="text-2xl font-bold text-neutral-900 sm:text-3xl md:text-4xl">
+      Préstamos para
+      <span class="block text-primary">Pensionados y Jubilados</span>
     </h2>
     <p class="mt-4 text-sm leading-relaxed text-neutral-500 md:text-base">
       En Pensiora te ayudamos a encontrar la mejor opción de financiamiento para que
@@ -20,97 +83,105 @@ import { Icon } from "astro-icon/components";
     </p>
   </div>
 
-  <!-- Controles del carrusel (solo visibles cuando hace falta, ej. mobile) -->
-  <div class="mt-8 flex items-center justify-end gap-2 md:hidden">
-    <button
-      id="carousel-prev"
-      type="button"
-      aria-label="Anterior"
-      class="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-500 transition hover:bg-neutral-100"
-    >
-      <Icon name="lucide:chevron-left" class="h-5 w-5" />
-    </button>
-    <button
-      id="carousel-next"
-      type="button"
-      aria-label="Siguiente"
-      class="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-500 transition hover:bg-neutral-100"
-    >
-      <Icon name="lucide:chevron-right" class="h-5 w-5" />
-    </button>
-  </div>
+  <!-- ===================== SERVICIOS ===================== -->
 
-  <!-- Carrusel -->
+  <!-- Controles del carrusel (solo visibles en mobile/tablet) -->
+  <div class="mt-8 flex items-center justify-between gap-2 lg:hidden">
+    <h3 class="text-base font-semibold text-neutral-900 sm:text-lg">Nuestros servicios</h3>
+    <div class="flex gap-2">
+      <button
+        id="carousel-prev"
+        type="button"
+        aria-label="Anterior"
+        class="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-500 transition hover:bg-neutral-100"
+      >
+        <Icon name="lucide:chevron-left" class="h-5 w-5" />
+      </button>
+      <button
+        id="carousel-next"
+        type="button"
+        aria-label="Siguiente"
+        class="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-500 transition hover:bg-neutral-100"
+      >
+        <Icon name="lucide:chevron-right" class="h-5 w-5" />
+      </button>
+    </div>
+  </div>
+  <h3 class="mt-8 hidden text-lg font-semibold text-neutral-900 lg:block">Nuestros servicios</h3>
+
+  <!-- Carrusel / Grid -->
   <ul
     id="services-carousel"
-    class="mt-6 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-4 md:overflow-visible"
+    class="mt-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 sm:gap-6 [-ms-overflow-style:none] scrollbar-none [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-2 md:overflow-visible lg:grid-cols-5"
   >
-    <li class="w-[85%] shrink-0 snap-center rounded-2xl bg-white p-6 shadow-sm md:w-auto">
-      <div class="flex h-14 w-14 items-center justify-center rounded-full bg-rose-50">
-        <Icon name="lucide:hand-coins" class="h-6 w-6 text-primary" />
-      </div>
-      <h3 class="relative mt-4 inline-block pb-2 text-base font-semibold text-neutral-900 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-8 after:bg-rose-500">
-        Préstamos para Pensionados
-      </h3>
-      <p class="mt-3 text-sm leading-relaxed text-neutral-500">
-        Accede a opciones de financiamiento diseñadas especialmente para pensionados,
-        con condiciones competitivas y un proceso sencillo.
-      </p>
-    </li>
-
-    <li class="w-[85%] shrink-0 snap-center rounded-2xl bg-white p-6 shadow-sm md:w-auto">
-      <div class="flex h-14 w-14 items-center justify-center rounded-full bg-rose-50">
-        <Icon name="lucide:refresh-cw" class="h-6 w-6 text-primary" />
-      </div>
-      <h3 class="relative mt-4 inline-block pb-2 text-base font-semibold text-neutral-900 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-8 after:bg-rose-500">
-        Refinanciamiento de Préstamos
-      </h3>
-      <p class="mt-3 text-sm leading-relaxed text-neutral-500">
-        Si ya cuentas con un préstamo, te ayudamos a encontrar alternativas que te
-        permitan mejorar tus condiciones y reducir el monto de tus pagos mensuales.
-      </p>
-    </li>
-
-    <li class="w-[85%] shrink-0 snap-center rounded-2xl bg-white p-6 shadow-sm md:w-auto">
-      <div class="flex h-14 w-14 items-center justify-center rounded-full bg-rose-50">
-        <Icon name="lucide:landmark" class="h-6 w-6 text-primary" />
-      </div>
-      <h3 class="relative mt-4 inline-block pb-2 text-base font-semibold text-neutral-900 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-8 after:bg-rose-500">
-        Comparación entre Financieras
-      </h3>
-      <p class="mt-3 text-sm leading-relaxed text-neutral-500">
-        Analizamos distintas instituciones financieras para encontrar la opción que
-        mejor se adapte a tus necesidades.
-      </p>
-    </li>
-
-    <li class="w-[85%] shrink-0 snap-center rounded-2xl bg-white p-6 shadow-sm md:w-auto">
-      <div class="flex h-14 w-14 items-center justify-center rounded-full bg-rose-50">
-        <Icon name="lucide:headset" class="h-6 w-6 text-primary" />
-      </div>
-      <h3 class="relative mt-4 inline-block pb-2 text-base font-semibold text-neutral-900 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-8 after:bg-rose-500">
-        Asesoría Personalizada
-      </h3>
-      <p class="mt-3 text-sm leading-relaxed text-neutral-500">
-        Nuestros especialistas te acompañan desde la solicitud hasta la aprobación de
-        tu préstamo, resolviendo cualquier duda durante el proceso.
-      </p>
-    </li>
+    {servicios.map((s) => (
+      <li class="w-[80%] shrink-0 snap-center rounded-2xl bg-white p-5 shadow-sm sm:w-[65%] sm:p-6 md:w-auto">
+        <div class="flex h-12 w-12 items-center justify-center rounded-full bg-rose-50 sm:h-14 sm:w-14">
+          <Icon name={s.icon} class="h-5 w-5 text-primary sm:h-6 sm:w-6" />
+        </div>
+        <h4 class="relative mt-4 inline-block pb-2 text-base font-semibold text-neutral-900 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-8 after:bg-rose-500">
+          {s.title}
+        </h4>
+        <p class="mt-3 text-sm leading-relaxed text-neutral-500">{s.text}</p>
+      </li>
+    ))}
   </ul>
 
-  <!-- Indicadores (dots) solo en mobile -->
+  <!-- Indicadores (dots) solo en mobile/tablet -->
   <div id="carousel-dots" class="mt-4 flex justify-center gap-2 md:hidden">
-    <button type="button" data-dot="0" aria-label="Ir a la diapositiva 1" class="h-2 w-2 rounded-full bg-rose-500"></button>
-    <button type="button" data-dot="1" aria-label="Ir a la diapositiva 2" class="h-2 w-2 rounded-full bg-neutral-300"></button>
-    <button type="button" data-dot="2" aria-label="Ir a la diapositiva 3" class="h-2 w-2 rounded-full bg-neutral-300"></button>
-    <button type="button" data-dot="3" aria-label="Ir a la diapositiva 4" class="h-2 w-2 rounded-full bg-neutral-300"></button>
+    {servicios.map((_, i) => (
+      <button
+        type="button"
+        data-dot={i}
+        aria-label={`Ir a la diapositiva ${i + 1}`}
+        class={`h-2 w-2 rounded-full transition-colors ${i === 0 ? "bg-rose-500" : "bg-neutral-300"}`}
+      />
+    ))}
   </div>
 
-  <!-- Banner CTA -->
-  <div class="mt-8 flex flex-col gap-4 rounded-2xl bg-rose-50 p-6 md:flex-row md:items-center md:justify-between">
+  <!-- ===================== REQUISITOS ===================== -->
+  <div class="mt-12 sm:mt-16">
+    <div class="mx-auto max-w-2xl text-center">
+      <h3 class="text-xl font-bold text-neutral-900 sm:text-2xl">Requisitos</h3>
+      <p class="mt-2 text-sm text-neutral-500 sm:text-base">
+        Rápido y confiable. Solo necesitas lo siguiente para iniciar tu trámite:
+      </p>
+    </div>
+
+    <ul class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+      {requisitos.map((r) => (
+        <li class="flex items-start gap-4 rounded-2xl bg-white p-5 shadow-sm sm:flex-col sm:items-start sm:gap-3">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-rose-50">
+            <Icon name={r.icon} class="h-5 w-5 text-primary sm:h-6 sm:w-6" />
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold text-neutral-900 sm:text-base">{r.title}</h4>
+            <p class="mt-1 text-sm leading-relaxed text-neutral-500">{r.text}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Dependencias / instituciones aceptadas -->
+    <div class="mt-8 rounded-2xl border border-dashed border-rose-200 bg-white p-5 sm:p-6">
+      <p class="text-center text-sm font-medium text-neutral-700 sm:text-left">
+        Aplica para pensionados y jubilados de:
+      </p>
+      <div class="mt-3 flex flex-wrap justify-center gap-2 sm:justify-start">
+        {dependencias.map((d) => (
+          <span class="rounded-full bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700 sm:text-sm">
+            {d}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== CTA ===================== -->
+  <div class="mt-8 flex flex-col gap-4 rounded-2xl bg-rose-50 p-5 sm:p-6 md:flex-row md:items-center md:justify-between">
     <div class="flex items-center gap-4">
-      <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-rose-100">
-        <Icon name="lucide:users" class="h-6 w-6 text-primary" />
+      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-rose-100 sm:h-14 sm:w-14">
+        <Icon name="lucide:users" class="h-5 w-5 text-primary sm:h-6 sm:w-6" />
       </div>
       <div>
         <p class="font-semibold text-neutral-900">¿Listo para encontrar un mejor préstamo?</p>
@@ -138,14 +209,14 @@ import { Icon } from "astro-icon/components";
 
   if (track) {
     const cardWidth = () => (track.firstElementChild as HTMLElement)?.offsetWidth ?? 0;
-    const gap = 24; // debe coincidir con el gap-6 (1.5rem = 24px)
+    const getGap = () => parseFloat(getComputedStyle(track).columnGap || "16");
 
     prevBtn?.addEventListener("click", () => {
-      track.scrollBy({ left: -(cardWidth() + gap), behavior: "smooth" });
+      track.scrollBy({ left: -(cardWidth() + getGap()), behavior: "smooth" });
     });
 
     nextBtn?.addEventListener("click", () => {
-      track.scrollBy({ left: cardWidth() + gap, behavior: "smooth" });
+      track.scrollBy({ left: cardWidth() + getGap(), behavior: "smooth" });
     });
 
     const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll<HTMLButtonElement>("[data-dot]")) : [];
@@ -153,15 +224,21 @@ import { Icon } from "astro-icon/components";
     dots.forEach((dot) => {
       dot.addEventListener("click", () => {
         const index = Number(dot.dataset.dot);
-        track.scrollTo({ left: index * (cardWidth() + gap), behavior: "smooth" });
+        track.scrollTo({ left: index * (cardWidth() + getGap()), behavior: "smooth" });
       });
     });
 
+    let ticking = false;
     track.addEventListener("scroll", () => {
-      const index = Math.round(track.scrollLeft / (cardWidth() + gap));
-      dots.forEach((dot, i) => {
-        dot.classList.toggle("bg-rose-500", i === index);
-        dot.classList.toggle("bg-neutral-300", i !== index);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const index = Math.round(track.scrollLeft / (cardWidth() + getGap()));
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("bg-rose-500", i === index);
+          dot.classList.toggle("bg-neutral-300", i !== index);
+        });
+        ticking = false;
       });
     });
   }
