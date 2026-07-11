@@ -5,3 +5,7 @@
     --color-accent: #FF92D7;
     --color-background: #EEEEEE;
 }
+
+html {
+  scroll-behavior: smooth;
+}

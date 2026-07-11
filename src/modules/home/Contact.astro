@@ -5,9 +5,21 @@
 //   npm install astro-icon @iconify-json/lucide
 
 import { Icon } from "astro-icon/components";
+
+const telefono = "5551234567";
+const whatsappPrincipal = "5215598765432";
+
+const contactos = [
+  { nombre: "Adriana", numero: "5215579814249" },
+  { nombre: "Ada", numero: "5215652601641" },
+];
+
+const mensajeWhatsapp = "Hola, quisiera mas informacion sobre los prestamos para pensionados/jubilados.";
+const waLink = (numero: string) =>
+  `https://wa.me/${numero}?text=${encodeURIComponent(mensajeWhatsapp)}`;
 ---
 
-<section class=" w-full mt-16 px-6 py-12 bg-white">
+<section id="contacto" class=" w-full mt-16 px-6 py-12 bg-white">
   <div class="grid gap-10 lg:grid-cols-2">
     <!-- Columna izquierda -->
     <div>
@@ -28,37 +40,8 @@ import { Icon } from "astro-icon/components";
       </p>
 
       <ul class="mt-6 space-y-4">
-        <li class="flex items-center gap-4 border-b border-neutral-100 pb-4">
-          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10">
-            <Icon name="lucide:phone" class="h-5 w-5 text-primary" />
-          </div>
-          <div>
-            <p class="text-sm font-semibold text-neutral-900">Teléfono</p>
-            <p class="text-sm font-medium text-primary">(55) 1234 5678</p>
-          </div>
-        </li>
 
         <li class="flex items-center gap-4 border-b border-neutral-100 pb-4">
-          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10">
-            <Icon name="lucide:message-circle" class="h-5 w-5 text-primary" />
-          </div>
-          <div>
-            <p class="text-sm font-semibold text-neutral-900">WhatsApp</p>
-            <p class="text-sm font-medium text-primary">(55) 9876 5432</p>
-          </div>
-        </li>
-
-        <li class="flex items-center gap-4 border-b border-neutral-100 pb-4">
-          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10">
-            <Icon name="lucide:mail" class="h-5 w-5 text-primary" />
-          </div>
-          <div>
-            <p class="text-sm font-semibold text-neutral-900">Correo electrónico</p>
-            <p class="text-sm font-medium text-primary">contacto@pensiora.com</p>
-          </div>
-        </li>
-
-        <li class="flex items-center gap-4">
           <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10">
             <Icon name="lucide:map-pin" class="h-5 w-5 text-primary" />
           </div>
@@ -67,6 +50,26 @@ import { Icon } from "astro-icon/components";
             <p class="text-sm text-neutral-500">Ciudad de México, México.</p>
           </div>
         </li>
+
+        <!-- Contactos adicionales de WhatsApp -->
+        {contactos.map((c) => (
+          <li class="flex items-center gap-4 border-b border-neutral-100 pb-4 last:border-b-0 last:pb-0">
+            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10">
+              <Icon name="lucide:message-circle" class="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-neutral-900">WhatsApp — {c.nombre}</p>
+              <a
+                href={waLink(c.numero)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm font-medium text-primary hover:underline"
+              >
+                {c.numero.replace(/^521?/, "").replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2 $3")}
+              </a>
+            </div>
+          </li>
+        ))}
       </ul>
 
       <div class="relative mt-8 h-56 overflow-hidden rounded-2xl md:h-64">

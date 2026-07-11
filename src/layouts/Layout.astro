@@ -5,6 +5,7 @@ import "@/styles/global.css";
 
 // Local imports
 import Navbar from "@modules/navigation/Navbar.astro";
+import Footer from "@modules/navigation/Footer.astro";
 
 const { title } = Astro.props;
 ---
@@ -22,6 +23,7 @@ const { title } = Astro.props;
 	<body class="bg-background">
 		<Navbar />
 		<slot />
+		<Footer />
 	</body>
 </html>
 

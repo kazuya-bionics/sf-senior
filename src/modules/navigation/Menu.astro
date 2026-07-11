@@ -1,0 +1,119 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const socials = [
+  { name: 'Facebook', icon: 'simple-icons:facebook', url: 'https://www.facebook.com/profile.php?id=61585688856707' },
+  { name: 'Instagram', icon: 'simple-icons:instagram', url: 'https://www.instagram.com/pres.tamosjubilados' },
+  { name: 'TikTok', icon: 'simple-icons:tiktok', url: 'https://www.tiktok.com/@prestamos.pension3' },
+];
+---
+
+<div id="menu-container" class="w-full scale-x-0 origin-right h-full fixed top-0 left-0 bg-white z-40 flex flex-col justify-between py-16 px-8 md:px-20">
+
+  <!-- Espaciador superior (podrías poner tu logo aquí) -->
+  <div></div>
+
+  <!-- Links principales -->
+  <ul class="flex flex-col justify-center items-start gap-4 md:gap-6 text-4xl md:text-6xl font-semibold">
+    <li class="group flex items-baseline gap-4">
+      <span class="text-base md:text-lg font-normal text-gray-400">01</span>
+      <a class="menu-item relative inline-block transition-colors duration-300 hover:text-gray-400" href="#home">
+        Inicio
+      </a>
+    </li>
+    <li class="group flex items-baseline gap-4">
+      <span class="text-base md:text-lg font-normal text-gray-400">02</span>
+      <a class="menu-item relative inline-block transition-colors duration-300 hover:text-gray-400" href="#nosotros">
+        Nosotros
+      </a>
+    </li>
+    <li class="group flex items-baseline gap-4">
+      <span class="text-base md:text-lg font-normal text-gray-400">03</span>
+      <a class="menu-item relative inline-block transition-colors duration-300 hover:text-gray-400" href="#servicios">
+        Prestamos
+      </a>
+    </li>
+    <li class="group flex items-baseline gap-4">
+      <span class="text-base md:text-lg font-normal text-gray-400">04</span>
+      <a class="menu-item relative inline-block transition-colors duration-300 hover:text-gray-400" href="#contacto">
+        Contacto
+      </a>
+    </li>
+  </ul>
+
+  <!-- Redes sociales -->
+  <div class="flex flex-col gap-4">
+    <span class="text-sm uppercase tracking-widest text-gray-400">Síguenos</span>
+    <div class="flex items-center gap-6">
+      {socials.map((social) => (
+        <a
+          href={social.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={social.name}
+          class="text-gray-700 hover:text-black transition-colors duration-300"
+        >
+          <Icon name={social.icon} width={24} height={24} />
+        </a>
+      ))}
+    </div>
+  </div>
+
+</div>
+
+<div id="menu-overlay" class="w-full h-screen fixed scale-x-0 origin-left top-0 left-0 bg-black z-30">
+</div>
+
+<script>
+    import gsap from "gsap";
+    import { SplitText } from "gsap/SplitText";
+    gsap.registerPlugin(SplitText);
+
+    const menuContainer = document.getElementById("menu-container") as HTMLElement | null;
+    const menuOverlay = document.getElementById("menu-overlay") as HTMLElement | null;
+
+    const splitItems = SplitText.create(
+        ".menu-item",
+        {
+            type: "lines, chars",
+            mask: "lines"
+        }
+    );
+
+    if (menuContainer && menuOverlay) {
+        const tl = gsap.timeline({ paused: true, reversed: true });
+
+        tl.to(menuOverlay, { scaleX: 1, duration: 0.5, transformOrigin: "left", transition: "ease-in-out", delay: 0.1 }, 0);
+        tl.to(menuContainer, { scaleX: 1, duration: 0.5, transformOrigin: "right", transition: "ease-in-out", delay: 0 }, 0);
+        tl.from(splitItems.chars, { yPercent: 100, stagger: 0.02, duration: 0.3, ease: "power2.out" }, 0.2);
+
+        const toggleButton = document.getElementById("mobile-menu-toggle") as HTMLButtonElement | null;
+
+        const closeMenu = () => {
+            if (!tl.reversed()) {
+                tl.reverse();
+                toggleButton?.setAttribute("aria-expanded", "false");
+            }
+        };
+
+        if (toggleButton) {
+            toggleButton.addEventListener("click", () => {
+                if (tl.reversed()) {
+                    tl.play();
+                    toggleButton.setAttribute("aria-expanded", "true");
+                } else {
+                    tl.reverse();
+                    toggleButton.setAttribute("aria-expanded", "false");
+                }
+            });
+        }
+
+        // Cierra el menú al hacer click en cualquier link (anclas internas)
+        const menuLinks = document.querySelectorAll<HTMLAnchorElement>(".menu-item");
+        menuLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                closeMenu();
+            });
+        });
+    }
+</script>

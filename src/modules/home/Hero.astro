@@ -1,8 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components';
+
+const whatsappNumber = '5215652601641'; // <-- reemplaza con tu número real
 ---
 
-<div class="w-full min-h-screen md:h-screen relative overflow-hidden bg-white">
+<div id="home" class="w-full min-h-screen md:h-screen relative overflow-hidden bg-white">
 
     <!-- corner brackets decoration -->
     <div class="absolute top-4 left-4 md:top-6 md:left-6 w-5 h-5 md:w-6 md:h-6 border-t-2 border-l-2 border-primary/40"></div>
@@ -47,14 +49,24 @@ import { Icon } from 'astro-icon/components';
         <div/>
         <p class="text-sm max-w-sm md:max-w-none">Te conseguimos las mejores tasas preferenciales entre nuestras financieras, con nosotros nunca pagaras mas</p>
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 w-full sm:w-auto items-center">
-            <button class="bg-primary text-sm text-white px-4 py-2 rounded-full flex items-center justify-center gap-2 w-full sm:w-auto">
+            <a
+                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola, me gustaria simular un prestamo. Podrian ayudarme?')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-primary text-sm text-white px-4 py-2 rounded-full flex items-center justify-center gap-2 w-full sm:w-auto"
+            >
                 Simular prestamo
                 <Icon name="lucide:arrow-right" class="w-4 h-4" />
-            </button>
-            <button class="border border-primary text-sm text-primary px-4 py-2 rounded-full flex items-center justify-center gap-2 w-full sm:w-auto">
+            </a>
+             <a
+                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola, quiero obtener mi prestamo. Me pueden dar mas informacion?')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="border border-primary text-sm text-primary px-4 py-2 rounded-full flex items-center justify-center gap-2 w-full sm:w-auto"
+            >
                 Obten tu prestamo
                 <Icon name="lucide:arrow-right" class="w-4 h-4" />
-            </button>
+            </a>
         </div>
 
         <!-- feature row -->
