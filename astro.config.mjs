@@ -11,4 +11,6 @@ export default defineConfig({
 },
 
   integrations: [icon()],
+
+  site: "https://sf-senior.com",
 });
