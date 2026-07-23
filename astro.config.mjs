@@ -4,13 +4,15 @@ import { defineConfig } from 'astro/config';
 
 import icon from 'astro-icon';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
   plugins: [tailwindcss()],
 },
 
-  integrations: [icon()],
+  integrations: [icon(), sitemap()],
 
-  site: "https://sf-senior.com",
+  site: "https://www.sf-senior.com",
 });
